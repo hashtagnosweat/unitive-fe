@@ -81,7 +81,7 @@ function Sidebar() {
   });
 
   function getRooms() {
-    fetch('https://unitive.up.railway.app/rooms')
+    fetch('http://localhost:5001/rooms')
       .then((res) => res.json())
       .then((data) => setRooms(data));
   }
