@@ -1,6 +1,6 @@
 import React from 'react';
 import { io } from 'socket.io-client';
-const SOCKET_URL = 'http://localhost:5001';
+const SOCKET_URL = 'https://38lshwfw-5001.asse.devtunnels.ms';
 
 export const socket = io(SOCKET_URL);
 // app context

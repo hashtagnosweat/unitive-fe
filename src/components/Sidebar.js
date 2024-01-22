@@ -81,7 +81,7 @@ function Sidebar() {
   });
 
   function getRooms() {
-    fetch('http://localhost:5001/rooms')
+    fetch('https://38lshwfw-5001.asse.devtunnels.ms/rooms')
       .then((res) => res.json())
       .then((data) => setRooms(data));
   }
