@@ -66,7 +66,6 @@ function LanguagesAdminPage() {
   };
 
   const handleEditChange = (e) => {
-    console.log('e', e);
     const { value, name } = e.target;
     setFormData((prevState) => ({
       ...prevState,
@@ -84,9 +83,9 @@ function LanguagesAdminPage() {
         handleCloseEditLanguage();
         getLanguages();
       }
-    } catch (e) {
+    } catch (error) {
       setLoading(false);
-      console.log(e);
+      console.log(error);
     }
   }
 
