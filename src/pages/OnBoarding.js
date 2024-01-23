@@ -140,7 +140,7 @@ function OnBoarding() {
         <h2>EDIT ACCOUNT</h2>
 
         <form onSubmit={handleSubmit}>
-          <section>
+          <div className="onboarding-wrapper">
             {/* picture */}
             <div className="signup-profile-pic__container">
               <img
@@ -177,14 +177,17 @@ function OnBoarding() {
                 type="number"
                 name="dob_day"
                 placeholder="DD"
+                style={{ width: '120px' }}
                 required={true}
                 value={formData.dob_day}
                 onChange={handleChange}
               />
+
               <input
                 id="dob_month"
                 type="number"
                 name="dob_month"
+                style={{ width: '150px' }}
                 placeholder="MM"
                 required={true}
                 value={formData.dob_month}
@@ -194,6 +197,7 @@ function OnBoarding() {
                 id="dob_year"
                 type="number"
                 name="dob_year"
+                style={{ width: '150px' }}
                 placeholder="YYYY"
                 required={true}
                 value={formData.dob_year}
@@ -396,13 +400,13 @@ function OnBoarding() {
               maxLength={230}
               onChange={handleChange}
             />
+          </div>
 
-            <div className="arrow-submit">
-              <button type="submit">
-                <FaAngleRight className="submit-btn" />
-              </button>
-            </div>
-          </section>
+          <div className="arrow-submit">
+            <button type="submit">
+              <FaAngleRight className="submit-btn" />
+            </button>
+          </div>
         </form>
       </div>
     </>

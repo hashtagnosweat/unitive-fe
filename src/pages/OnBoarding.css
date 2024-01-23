@@ -1,21 +1,26 @@
+body {
+  overflow-x: hidden;
+}
+
 .onboarding form {
   display: flex;
   justify-content: center;
 }
 
-.onboarding form section {
+.onboarding form .onboarding-wrapper {
   display: flex;
   flex-direction: column;
   padding: 20px;
   width: 50%;
   text-align: start;
+  margin-bottom: 100px;
 }
 
 .onboarding form input {
   padding: 13px;
   margin: 10px 0;
   font-size: 15px;
-  border: solid 2px rgb(219, 219, 219);
+  border: solid 2px rgb(144, 144, 144);
   border-radius: 10px;
 }
 
@@ -27,6 +32,10 @@
 
 .onboarding form label {
   margin: 10px 0;
+}
+
+input {
+  background-color: transparent;
 }
 
 .onboarding form .multiple-input-container {
@@ -41,6 +50,7 @@
 .onboarding form .multiple-input-container label {
   padding: 10px;
   border: solid 2px rgb(144, 144, 144);
+
   border-radius: 10px;
   transition: all 0.3s;
   margin-right: 5px;
@@ -97,4 +107,26 @@
   justify-content: center;
   align-items: center;
   padding-top: 20px;
+}
+
+@media screen and (max-width: 1023px) {
+  /* Tablet and smaller desktop styles */
+}
+
+@media screen and (max-width: 767px) {
+  /* Mobile styles */
+
+  .auth-card {
+    margin: 0 10px;
+  }
+
+  .multiple-input-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 490px;
+  }
+
+  .onboarding form .onboarding-wrapper {
+    width: 100%;
+  }
 }
