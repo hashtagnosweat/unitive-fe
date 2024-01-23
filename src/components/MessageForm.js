@@ -161,9 +161,9 @@ function MessageForm() {
         <div ref={messageEndRef}></div>
       </div>
 
-      <Form onSubmit={handleSubmit}>
+      <Form className="mb-5" onSubmit={handleSubmit}>
         <Row>
-          <Col md={11}>
+          <Col md={11} xs={10}>
             <Form.Group>
               <Form.Control
                 type="text"
@@ -174,7 +174,7 @@ function MessageForm() {
               ></Form.Control>
             </Form.Group>
           </Col>
-          <Col md={1}>
+          <Col md={1} xs={2}>
             <Button
               variant="primary"
               type="submit"

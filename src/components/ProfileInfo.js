@@ -51,7 +51,7 @@ function ProfileInfo({
   return (
     <div
       id="profileInfoSize"
-      className={`profile-inner-${setInfoSize()}`}
+      className={`d-none d-sm-block profile-inner-${setInfoSize()}`}
       ref={profileRef}
     >
       <button className="close-icon" onClick={handleClick}>

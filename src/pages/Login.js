@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Row, Col, Form, Container, Button, Spinner } from 'react-bootstrap';
 import { useLoginUserMutation } from '../services/appApi';
 import { Link, useNavigate } from 'react-router-dom';
-import './Login.css';
+import './Auth.css';
 import { AppContext } from '../context/appContext';
 
 function Login() {
@@ -31,53 +31,79 @@ function Login() {
   }
 
   return (
-    <Container>
-      <Row>
-        <Col md={5} className="login__bg"></Col>
-        <Col
-          md={7}
-          className="d-flex align-items-center justify-content-center flex-direction-column"
-        >
-          <Form style={{ width: '80%', maxWidth: 500 }} onSubmit={handleLogin}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <h1 className="text-center">Sign In</h1>
-              {error && <p className="alert alert-danger">{error.data}</p>}
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-                required
-              />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-                required
-              />
-            </Form.Group>
-
-            <Button variant="primary" type="submit">
-              {isLoading ? <Spinner animation="grow" /> : 'Login'}
-            </Button>
-            <div className="py-4">
-              <p className="text-center">
-                Don't have an account? <Link to="/signup">Sign Up</Link>
-              </p>
+    <div className="auth-container my-5">
+      <div className="text-center shadow bg-white border border-1 auth-card">
+        <div className="row g-0 auth">
+          <div className="col-6">
+            <Link
+              className="border-bottom border-end border-1 auth-buttons-link auth-signup-link"
+              to="/signup"
+            >
+              <span className="auth-signup">SIGN UP</span>
+            </Link>
+          </div>
+          <div className="col-6">
+            <Link
+              className="border-bottom border-start border-1 auth-buttons-link auth-login-link"
+              to="/login"
+            >
+              <span className="auth-login">LOGIN</span>
+            </Link>
+          </div>
+        </div>
+        <h1 className="my-5 fw-light">Login to Your Account</h1>
+        <form className="auth-form" onSubmit={handleLogin}>
+          <div className="mb-3" controlId="formBasicEmail">
+            {error && <p className="alert alert-danger">{error.data}</p>}
+            <label
+              htmlFor="exampleInputEmail1"
+              className="d-flex align-items-start form-label"
+            >
+              Email address
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              placeholder="Enter email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              required
+            />
+            <div id="emailHelp" className="d-flex align-items-start form-text">
+              We'll never share your email with anyone else.
             </div>
-          </Form>
-        </Col>
-      </Row>
-    </Container>
+          </div>
+
+          <div className="mb-3">
+            <label
+              htmlFor="exampleInputPassword1"
+              className="d-flex align-items-start form-label"
+            >
+              Password
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              id="exampleInputPassword1"
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              required
+            />
+          </div>
+
+          <button type="submit" className="auth-btn btn btn-primary">
+            {isLoading ? (
+              <div className="spinner-grow" role="status"></div>
+            ) : (
+              'Login'
+            )}
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }
 

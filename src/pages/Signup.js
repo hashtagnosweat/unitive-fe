@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Row, Col, Form, Container, Button } from 'react-bootstrap';
 import { useSignupUserMutation } from '../services/appApi';
 import { Link, useNavigate } from 'react-router-dom';
-import './Signup.css';
-import botImg from '../assets/bot.jpeg';
+import './Auth.css';
+import botImg from '../assets/bot.png';
 
 function Signup() {
   const [email, setEmail] = useState('');
@@ -62,77 +62,191 @@ function Signup() {
   }
 
   return (
-    <Container>
-      <Row>
-        <Col
-          md={7}
-          className="d-flex align-items-center justify-content-center flex-direction-column"
-        >
-          <Form style={{ width: '80%', maxWidth: 500 }} onSubmit={handleSignup}>
-            <h1 className="text-center">Create account</h1>
-            <div className="signup-profile-pic__container">
-              <img
-                src={imagePreview || botImg}
-                className="signup-profile-pic"
-              />
-              <label htmlFor="image-upload" className="image-upload-label">
-                <i className="fas fa-plus-circle add-picture-icon"></i>
-              </label>
-              <input
-                type="file"
-                id="image-upload"
-                hidden
-                accept="image/png, image/jpeg"
-                onChange={validateImg}
-              />
-            </div>
+    <div className="auth-container my-5">
+      <div className="text-center shadow bg-white border border-1 auth-card">
+        <div className="row g-0 auth">
+          <div className="col-6">
+            <Link
+              className="border-bottom border-end border-1 auth-buttons-link auth-signup-link"
+              to="/signup"
+            >
+              <span className="auth-signup">SIGN UP</span>
+            </Link>
+          </div>
+          <div className="col-6">
+            <Link
+              className="border-bottom border-start border-1 auth-buttons-link auth-login-link"
+              to="/login"
+            >
+              <span className="auth-login">LOGIN</span>
+            </Link>
+          </div>
+        </div>
+        <h1 className="mt-5 fw-light">Create an Account</h1>
+        <form className="auth-form" onSubmit={handleSignup}>
+          <div className="signup-profile-pic__container my-4">
+            <img
+              src={imagePreview || botImg}
+              className="signup-profile-pic"
+              alt="Profile"
+            />
+            <label htmlFor="image-upload" className="image-upload-label">
+              <i className="fas fa-plus-circle add-picture-icon"></i>
+            </label>
+            <input
+              type="file"
+              id="image-upload"
+              hidden
+              accept="image/png, image/jpeg"
+              onChange={validateImg}
+            />
+          </div>
 
-            <Form.Group className="mb-3" controlId="formBasicName">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Your name"
-                onChange={(e) => setName(e.target.value)}
-                value={name}
-              />
-            </Form.Group>
+          <div className="mb-3">
+            <label
+              htmlFor="formBasicName"
+              className="d-flex align-items-start form-label"
+            >
+              Name
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="formBasicName"
+              placeholder="Your name"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+            />
+          </div>
 
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-              />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
-            </Form.Group>
+          <div className="mb-3">
+            <label
+              htmlFor="formBasicEmail"
+              className="d-flex align-items-start form-label"
+            >
+              Email address
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              id="formBasicEmail"
+              placeholder="Enter email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
+            <small className="d-flex align-items-start text-muted">
+              We'll never share your email with anyone else.
+            </small>
+          </div>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-              />
-            </Form.Group>
+          <div className="mb-3">
+            <label
+              htmlFor="formBasicPassword"
+              className="d-flex align-items-start form-label"
+            >
+              Password
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              id="formBasicPassword"
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            />
+          </div>
 
-            <Button variant="primary" type="submit">
-              {uploadingImg ? 'Signing you up...' : 'Signup'}
-            </Button>
-            <div className="py-4">
-              <p className="text-center">
-                Already have an account? <Link to="/login">Login</Link>
-              </p>
-            </div>
-          </Form>
-        </Col>
-        <Col md={5} className="signup__bg"></Col>
-      </Row>
-    </Container>
+          <button type="submit" className="auth-btn btn btn-primary mb-3">
+            {uploadingImg ? 'Signing you up...' : 'Signup'}
+          </button>
+        </form>
+      </div>
+    </div>
+
+    // OLD CODE
+
+    // <div className="signup-container">
+    //   <form
+    //     style={{ width: '80%', maxWidth: 500 }}
+    //     onSubmit={handleSignup}
+    //     className="mt-3"
+    //   >
+    //     <h1 className="text-center mb-4">Create account</h1>
+
+    //     <div className="signup-profile-pic__container mb-3">
+    //       <img
+    //         src={imagePreview || botImg}
+    //         className="signup-profile-pic"
+    //         alt="Profile"
+    //       />
+    //       <label htmlFor="image-upload" className="image-upload-label">
+    //         <i className="fas fa-plus-circle add-picture-icon"></i>
+    //       </label>
+    //       <input
+    //         type="file"
+    //         id="image-upload"
+    //         hidden
+    //         accept="image/png, image/jpeg"
+    //         onChange={validateImg}
+    //       />
+    //     </div>
+
+    //     <div className="mb-3">
+    //       <label htmlFor="formBasicName" className="form-label">
+    //         Name
+    //       </label>
+    //       <input
+    //         type="text"
+    //         className="form-control"
+    //         id="formBasicName"
+    //         placeholder="Your name"
+    //         onChange={(e) => setName(e.target.value)}
+    //         value={name}
+    //       />
+    //     </div>
+
+    //     <div className="mb-3">
+    //       <label htmlFor="formBasicEmail" className="form-label">
+    //         Email address
+    //       </label>
+    //       <input
+    //         type="email"
+    //         className="form-control"
+    //         id="formBasicEmail"
+    //         placeholder="Enter email"
+    //         onChange={(e) => setEmail(e.target.value)}
+    //         value={email}
+    //       />
+    //       <small className="text-muted">
+    //         We'll never share your email with anyone else.
+    //       </small>
+    //     </div>
+
+    //     <div className="mb-3">
+    //       <label htmlFor="formBasicPassword" className="form-label">
+    //         Password
+    //       </label>
+    //       <input
+    //         type="password"
+    //         className="form-control"
+    //         id="formBasicPassword"
+    //         placeholder="Password"
+    //         onChange={(e) => setPassword(e.target.value)}
+    //         value={password}
+    //       />
+    //     </div>
+
+    //     <button type="submit" className="btn btn-primary mb-3">
+    //       {uploadingImg ? 'Signing you up...' : 'Signup'}
+    //     </button>
+
+    //     <div className="py-4 text-center">
+    //       <p>
+    //         Already have an account? <Link to="/login">Login</Link>
+    //       </p>
+    //     </div>
+    //   </form>
+    // </div>
   );
 }
 

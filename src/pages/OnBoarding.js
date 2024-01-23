@@ -6,7 +6,7 @@ import { useUpdateUserMutation } from '../services/appApi';
 import axios from 'axios';
 
 import './OnBoarding.css';
-import botImg from '../assets/bot.jpeg';
+import botImg from '../assets/bot.png';
 
 function OnBoarding() {
   const user = useSelector((state) => state.user);

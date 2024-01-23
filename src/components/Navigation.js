@@ -1,9 +1,9 @@
-import React from "react";
-import { Nav, Navbar, Container, Button, NavDropdown } from "react-bootstrap";
-import { useLogoutUserMutation } from "../services/appApi";
-import { useSelector } from "react-redux";
-import { LinkContainer } from "react-router-bootstrap";
-import logo from "../assets/logo.png";
+import React from 'react';
+import { Nav, Navbar, Container, Button, NavDropdown } from 'react-bootstrap';
+import { useLogoutUserMutation } from '../services/appApi';
+import { useSelector } from 'react-redux';
+import { LinkContainer } from 'react-router-bootstrap';
+import logo from '../assets/logo.png';
 
 function Navigation() {
   const user = useSelector((state) => state.user);
@@ -13,7 +13,7 @@ function Navigation() {
     e.preventDefault();
     await logoutUser(user);
     // redirect to home page
-    window.location.replace("/");
+    window.location.replace('/');
   }
 
   return (
@@ -29,7 +29,9 @@ function Navigation() {
           <Nav className="ms-auto">
             {!user && (
               <LinkContainer to="/login">
-                <Nav.Link variant="primary">Login</Nav.Link>
+                <Nav.Link className="me-5" variant="primary">
+                  Login
+                </Nav.Link>
               </LinkContainer>
             )}
             {user && (
@@ -38,7 +40,7 @@ function Navigation() {
               </LinkContainer>
             )}
 
-            {user &&  (
+            {user && (
               <NavDropdown
                 title={
                   <>
@@ -48,8 +50,8 @@ function Navigation() {
                         width: 30,
                         height: 30,
                         marginRight: 10,
-                        objectFit: "cover",
-                        borderRadius: "50%",
+                        objectFit: 'cover',
+                        borderRadius: '50%',
                       }}
                     />
                     {user.name}
@@ -73,11 +75,11 @@ function Navigation() {
                 )}
                 <NavDropdown.Item>
                   <NavDropdown.Divider />
-                {user && !user.isBanned && 
-                  <Button variant="danger" onClick={handleLogout}>
-                    Logout
-                  </Button>
-}
+                  {user && !user.isBanned && (
+                    <Button variant="danger" onClick={handleLogout}>
+                      Logout
+                    </Button>
+                  )}
                 </NavDropdown.Item>
               </NavDropdown>
             )}
