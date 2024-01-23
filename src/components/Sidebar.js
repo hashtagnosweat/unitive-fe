@@ -29,13 +29,6 @@ function Sidebar() {
   const [profileIndex, setProfileIndex] = useState(0);
   let profileRef = useRef();
 
-  console.log(profileIndex);
-
-  console.log('currentRoom', currentRoom);
-  console.log('members', members);
-  console.log('userId', user._id);
-  console.log('rooms', rooms);
-
   function joinRoom(room, isPublic = true) {
     if (!user) {
       return alert('Please login!');
@@ -119,9 +112,6 @@ function Sidebar() {
   }
 
   const filteredAdmins = members?.filter((member) => member.isAdmin);
-
-  console.log('FILTERED ADMINS', filteredAdmins);
-  console.log('MEMBERS', members);
 
   if (!user) {
     return <></>;

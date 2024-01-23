@@ -1,15 +1,16 @@
-import React, { useContext } from "react";
-import { AppContext } from "../context/appContext";
-import { AiOutlineCloseCircle } from "react-icons/ai";
+import React, { useContext } from 'react';
+import { AppContext } from '../context/appContext';
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 
+import './ProfileInfo.css';
 
-
-import "./ProfileInfo.css";
-
-function ProfileInfo({ profileRef, showProfileInfo, setShowProfileInfo, profileIndex}) {
+function ProfileInfo({
+  profileRef,
+  showProfileInfo,
+  setShowProfileInfo,
+  profileIndex,
+}) {
   const { privateMemberMsg } = useContext(AppContext);
-
-  console.log("FROM PROFILE INFO", privateMemberMsg);
 
   const calculateAge = (year, month, day) => {
     var today_date = new Date();
@@ -39,48 +40,47 @@ function ProfileInfo({ profileRef, showProfileInfo, setShowProfileInfo, profileI
   };
 
   const setInfoSize = () => {
-    const element = document.getElementById('profileInfoSize')
-    console.log("ELEMENT", element?.offsetHeight)
-    if(element?.offsetHeight > 280 || profileIndex < 5) {
-      return 'large'
+    const element = document.getElementById('profileInfoSize');
+    if (element?.offsetHeight > 280 || profileIndex < 5) {
+      return 'large';
     } else {
-      return 'small'
+      return 'small';
     }
-    
   };
- 
- 
 
   return (
-   
-    <div id="profileInfoSize" className={`profile-inner-${setInfoSize()}`} ref={profileRef}>
+    <div
+      id="profileInfoSize"
+      className={`profile-inner-${setInfoSize()}`}
+      ref={profileRef}
+    >
       <button className="close-icon" onClick={handleClick}>
         <AiOutlineCloseCircle />
       </button>
       <div className="d-flex align-items-center mb-3">
         <img src={privateMemberMsg?.picture} className="profile-img" />
         <p className="profile-detail">
-          {privateMemberMsg.name},{" "}
+          {privateMemberMsg.name},{' '}
           {privateMemberMsg?.dob_year
             ? calculateAge(
                 privateMemberMsg.dob_year,
                 privateMemberMsg.dob_month,
                 privateMemberMsg.dob_date
               )
-            : " "}
+            : ' '}
         </p>
       </div>
       <h6>NATIVE LANGUAGE</h6>
       <p className="profile-mt">
         {privateMemberMsg?.mother_tongue
           ? capitalizeFirstLetter(privateMemberMsg?.mother_tongue)
-          : " "}
+          : ' '}
       </p>
       <h6>LEARNING</h6>
       {privateMemberMsg.learning_languages?.map((language) => (
         <p className="profile-ll">
-          {" "}
-          {language ? capitalizeFirstLetter(language) : " "}
+          {' '}
+          {language ? capitalizeFirstLetter(language) : ' '}
         </p>
       ))}
       <h6>ABOUT ME</h6>

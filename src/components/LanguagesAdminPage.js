@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Button, Table, Modal, Form } from "react-bootstrap";
-import axios from "../axios";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import Loading from "./Loading";
+import React, { useEffect, useState } from 'react';
+import { Button, Table, Modal, Form } from 'react-bootstrap';
+import axios from '../axios';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import Loading from './Loading';
 
 function LanguagesAdminPage() {
-  const [newLanguage, setNewLanguage] = useState('')
-  const [newFlagCode, setNewFlagCode] = useState('')
+  const [newLanguage, setNewLanguage] = useState('');
+  const [newFlagCode, setNewFlagCode] = useState('');
 
   const [languages, setLanguages] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -18,17 +18,16 @@ function LanguagesAdminPage() {
   const handleCloseAddLanguage = () => setShowAdd(false);
   const handleAddLanguage = () => setShowAdd(true);
   const handleCloseEditLanguage = () => setShowEdit(false);
-  
+
   const [formData, setFormData] = useState({
-    _id: "",
-    name: "",
-    flag_code: "",
+    _id: '',
+    name: '',
+    flag_code: '',
   });
-  console.log(formData);
 
   async function getLanguages() {
     try {
-      const response = await axios.get("/rooms");
+      const response = await axios.get('/rooms');
       setLoading(false);
       setLanguages(response.data);
     } catch (error) {
@@ -38,76 +37,75 @@ function LanguagesAdminPage() {
   }
 
   async function handleAddSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const response = await axios.post("/addlanguage", {newLanguage, newFlagCode});
+      const response = await axios.post('/addlanguage', {
+        newLanguage,
+        newFlagCode,
+      });
       setLoading(false);
-      const success = response.status === 200
-      if(success) {
-      handleCloseAddLanguage()
-      getLanguages();
-    }
-    } catch (e) {
+      const success = response.status === 200;
+      if (success) {
+        handleCloseAddLanguage();
+        getLanguages();
+      }
+    } catch (error) {
       setLoading(false);
-      console.log(e);
+      console.log(error);
     }
   }
 
   const handleEditLanguage = (_id, name, flag_code) => {
-    setShowEdit(true)
+    setShowEdit(true);
     setFormData((prevState) => ({
       ...prevState,
       _id: _id,
       name: name,
       flag_code: flag_code,
     }));
-  } 
+  };
 
   const handleEditChange = (e) => {
-    console.log("e", e);
+    console.log('e', e);
     const { value, name } = e.target;
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
-  }
+  };
 
   async function handleEditSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const response = await axios.patch("/editlanguage", {formData});
-      const success = response.status === 200
+      const response = await axios.patch('/editlanguage', { formData });
+      const success = response.status === 200;
       setLoading(false);
-      if(success) {
-        handleCloseEditLanguage()
+      if (success) {
+        handleCloseEditLanguage();
         getLanguages();
       }
-
     } catch (e) {
       setLoading(false);
       console.log(e);
     }
   }
-  
-  
-  async function handleDeleteLanguage(id) {
-    if (window.confirm("Are you sure?")) 
-    try {
-      const response = await axios.delete("/deletelanguage", {
-        data: { _id: id}
-    });
-      setLoading(false);
-      const success = response.status === 200
-      if(success) {
-        getLanguages();
-      }
 
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
+  async function handleDeleteLanguage(id) {
+    if (window.confirm('Are you sure?'))
+      try {
+        const response = await axios.delete('/deletelanguage', {
+          data: { _id: id },
+        });
+        setLoading(false);
+        const success = response.status === 200;
+        if (success) {
+          getLanguages();
+        }
+      } catch (error) {
+        setLoading(false);
+        console.log(error);
+      }
   }
-  
 
   useEffect(() => {
     setLoading(true);
@@ -115,7 +113,6 @@ function LanguagesAdminPage() {
   }, []);
 
   if (loading) return <Loading />;
-
 
   return (
     <div className="content-wrapper">
@@ -139,13 +136,13 @@ function LanguagesAdminPage() {
                 autoFocus
                 className="mb-2"
                 name="name"
-                onChange={(e) => setNewLanguage(e.target.value)} 
-                value={newLanguage} 
+                onChange={(e) => setNewLanguage(e.target.value)}
+                value={newLanguage}
                 required={true}
               />
               <Form.Label>Flag Code</Form.Label>
-              <div style={{ fontSize: "11px", marginBottom: "5px" }}>
-                Please refer to{" "}
+              <div style={{ fontSize: '11px', marginBottom: '5px' }}>
+                Please refer to{' '}
                 <a href="https://flagicons.lipis.dev/">this website</a> to see
                 the code of the flag.
               </div>
@@ -154,8 +151,8 @@ function LanguagesAdminPage() {
                 placeholder="For example: en / id / gb"
                 autoFocus
                 name="flag_code"
-                onChange={(e) => setNewFlagCode(e.target.value)} 
-                value={newFlagCode} 
+                onChange={(e) => setNewFlagCode(e.target.value)}
+                value={newFlagCode}
                 required={true}
               />
             </Form.Group>
@@ -187,13 +184,13 @@ function LanguagesAdminPage() {
                 autoFocus
                 className="mb-2"
                 name="name"
-                onChange={handleEditChange} 
-                value={formData.name} 
+                onChange={handleEditChange}
+                value={formData.name}
                 required={true}
               />
               <Form.Label>Flag Code</Form.Label>
-              <div style={{ fontSize: "11px", marginBottom: "5px" }}>
-                Please refer to{" "}
+              <div style={{ fontSize: '11px', marginBottom: '5px' }}>
+                Please refer to{' '}
                 <a href="https://flagicons.lipis.dev/">this website</a> to see
                 the code of the flag.
               </div>
@@ -202,8 +199,8 @@ function LanguagesAdminPage() {
                 placeholder="For example: en / id / gb"
                 autoFocus
                 name="flag_code"
-                onChange={handleEditChange} 
-                value={formData.flag_code} 
+                onChange={handleEditChange}
+                value={formData.flag_code}
                 required={true}
               />
             </Form.Group>
@@ -222,11 +219,11 @@ function LanguagesAdminPage() {
       <Table responsive striped bordered hover>
         <thead>
           <tr>
-            <th style={{ width: "70px" }}>No</th>
+            <th style={{ width: '70px' }}>No</th>
             <th>ID</th>
             <th>Language</th>
             <th>Flag Code</th>
-            <th style={{ width: "155px" }}>Action</th>
+            <th style={{ width: '155px' }}>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -237,11 +234,16 @@ function LanguagesAdminPage() {
                 <td>{language._id}</td>
                 <td>{language.name}</td>
                 <td>{language.flag_code}</td>
-                <td style={{ justifyContent: "space-evenly", display: "flex" }}>
+                <td style={{ justifyContent: 'space-evenly', display: 'flex' }}>
                   <Button
                     variant="warning"
-                    onClick={() => handleEditLanguage(language._id, language.name, language.flag_code)}
-                    
+                    onClick={() =>
+                      handleEditLanguage(
+                        language._id,
+                        language.name,
+                        language.flag_code
+                      )
+                    }
                   >
                     Edit
                   </Button>
