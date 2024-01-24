@@ -3,10 +3,13 @@
   padding: 75px 200px;
   justify-content: center;
   align-items: center;
-  height: 100%;
   width: 100%;
-  overflow: hidden;
   z-index: 2;
+}
+
+.cta-btn {
+  width: 200px;
+  height: 50px;
 }
 
 .image-hero {
@@ -19,6 +22,7 @@
 
 .text-column {
   width: 580px;
+  font-size: 18px;
 }
 
 .text-column h1 {
@@ -26,6 +30,7 @@
 }
 .text-column p {
   color: #525f75;
+  font-weight: 300;
 }
 
 .home-message-icon {
@@ -33,17 +38,46 @@
   display: inline-block;
 }
 
+/* Item Showcase */
+
+.showcase-item-container {
+  margin-top: 300px;
+  padding: 0 366px;
+}
+
+.showcase-title {
+  font-size: 40px;
+  color: rgb(26, 58, 123);
+}
+
+.showcase-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.showcase-text {
+  font-size: 22px;
+  font-weight: 300;
+  color: #525f75;
+}
+
 /* Footer */
 .footer-container {
-  margin-top: 60px;
+  margin-top: 300px;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .footer-wrapper {
-  margin: 50px 300px;
+  padding: 30px;
+  margin: 0 200px;
 }
 
 .copyright-footer {
-  color: #545c69;
+  color: #788190;
 }
 
 .text-footer {
@@ -51,6 +85,13 @@
   color: #788190;
   align-items: center;
   justify-content: center;
+  width: 350px;
+}
+
+.icon-contact {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 @media screen and (max-width: 1023px) {
@@ -65,17 +106,52 @@
     width: auto;
   }
 
+  /* Item Showcase */
+
+  .showcase-left {
+    margin-bottom: 50px;
+  }
+
+  .showcase-item-container {
+    margin-top: 300px;
+    padding: 0 30px;
+  }
+
+  .showcase-title {
+    font-size: 40px;
+    color: rgb(26, 58, 123);
+    text-align: center;
+  }
+
+  .showcase-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .showcase-text {
+    font-size: 16px;
+    text-align: center;
+  }
+
   /* Footer */
+
+  .footer-wrapper {
+    padding: 30px;
+    margin: 0 10px;
+  }
 
   .footer-container {
     margin-top: 30px;
   }
 
-  .footer-wrapper {
-    margin: 50px;
+  .copyright-footer {
+    font-size: 14px;
   }
 
   .text-footer {
     font-size: 11px;
+    text-align: center;
+    width: auto;
   }
 }
