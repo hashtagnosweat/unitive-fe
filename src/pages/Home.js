@@ -76,7 +76,7 @@ function Home() {
             </div>
           </div>
 
-          <div className="text-center mobile-copyright-footer">
+          <div className="d-block d-sm-none text-center mobile-copyright-footer">
             © Unitive 2024, All rights reserved.
           </div>
 
