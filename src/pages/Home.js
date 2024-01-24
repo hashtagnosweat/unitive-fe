@@ -76,6 +76,10 @@ function Home() {
             </div>
           </div>
 
+          <div className="text-center mobile-copyright-footer">
+            © Unitive 2024, All rights reserved.
+          </div>
+
           <div className="d-flex justify-content-start text-footer">
             Discover the world through language with Unitive – Immerse yourself
             in a community of native speakers from around the globe.
